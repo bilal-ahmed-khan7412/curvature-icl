@@ -1,0 +1,46 @@
+# All hyperparameters live here. No magic numbers in code.
+
+# --- Reproducibility ---
+seed: 42
+eval_seeds: [42, 43, 44, 45, 46]   # seeds used for error-bar evaluation
+
+# --- Task / data ---
+task:
+  input_dim: 8          # D: dimension of x vectors
+  context_len: 16       # K: number of in-context examples
+  noise_std: 0.1        # additive Gaussian noise on y
+  n_train_tasks: 200000 # tasks seen during training
+  n_eval_tasks: 1000    # tasks for importance evaluation
+  n_adv_tasks: 500      # adversarial context tasks for kill-test
+  adv_collinearity: 0.95  # correlation strength for adversarial collinear pairs
+
+# --- Transformer ---
+model:
+  n_layers: 4
+  n_heads: 4
+  d_model: 64
+  d_ff: 256
+  dropout: 0.0          # no dropout for reproducibility in small model
+  max_context_len: 64   # must be >= 2*context_len + 1 (x,y interleaved + query)
+
+# --- Training ---
+train:
+  batch_size: 64
+  lr: 3.0e-4
+  weight_decay: 1.0e-5
+  n_steps: 100000
+  warmup_steps: 1000
+  eval_every: 2000
+  checkpoint_every: 10000
+  grad_clip: 1.0
+
+# --- Evaluation / kill-test ---
+eval:
+  top_k: 3              # top-k recall metric
+  min_spearman_improvement: 0.05  # curvature must beat first-order by this to GO
+
+# --- Paths ---
+paths:
+  checkpoint_dir: results/checkpoints
+  metrics_dir: results/metrics
+  figures_dir: results/figures
