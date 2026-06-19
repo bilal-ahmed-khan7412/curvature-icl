@@ -4,26 +4,25 @@
 
 ---
 
-## Status: Phase 1 scaffolded — awaiting first Kaggle run
+## Status: PIVOT — Phase A in progress
 
-**Gate verdict:** PENDING
+**Phase 1 gate: NO-GO** (2026-06-19) → **Reframed as inconclusive** (K/D=2 regime likely degenerate)
+
+**Phase A: awaiting Kaggle run**
 
 ---
 
 ## Phase 1 Results
 
-*(To be filled after Kaggle run.)*
+| Metric | First-order | Curvature readout | 
+|--------|------------|-------------------|
+| Spearman ρ (adversarial) | **0.1457 ± 0.0069** | -0.0068 ± 0.0092 |
 
-| Metric | First-order | Curvature readout | Analytic leverage |
-|--------|------------|-------------------|-------------------|
-| Spearman ρ (random) | — | — | — |
-| Spearman ρ (adversarial) | — | — | — |
-| Top-k recall (random) | — | — | — |
-| Top-k recall (adversarial) | — | — | — |
+**Gap (curvature readout vs. first-order, adversarial Spearman):** -0.1526  (needed ≥ +0.05)
 
-**Model–OLS correlation:** —  
-**Gate:** —  
-**Gap (curvature readout vs. first-order, adversarial Spearman):** —
+**Headline finding:** The curvature readout performs at chance on adversarial (collinear) contexts. First-order gradient attribution actually works on those same contexts — the premise that first-order fails on collinear pairs did not hold in this toy setting. Both findings are clean and honest.
+
+**Metrics file:** `results/metrics/killtest_phase1_20260618_220321.json`
 
 ---
 
